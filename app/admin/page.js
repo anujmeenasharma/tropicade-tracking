@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GlassCard } from '../../components/ui/GlassCard';
 import { Button } from '../../components/ui/Button';
-import { CheckCircle2, Package, Search, Edit, Link as LinkIcon, Trash2 } from 'lucide-react';
-import { createTrackingAction, fetchAllTrackings, updateStatusAction, updateTrackingEventsAction, deleteTrackingAction } from '../../lib/actions/tracking';
+import { CheckCircle2, Package, Search, Edit, Link as LinkIcon } from 'lucide-react';
+import { createTrackingAction, fetchAllTrackings, updateStatusAction, updateTrackingEventsAction } from '../../lib/actions/tracking';
 import { EditEventsModal } from '../../components/ui/EditEventsModal';
 
 export default function AdminDashboard() {
@@ -80,13 +80,6 @@ export default function AdminDashboard() {
         }).catch(err => {
             console.error('Failed to copy text: ', err);
         });
-    }
-
-    async function handleDelete(trackingId) {
-        if (window.confirm(`Are you sure you want to delete shipment ${trackingId}? This cannot be undone.`)) {
-            await deleteTrackingAction(trackingId);
-            loadData();
-        }
     }
 
     const activeCount = trackings.filter(t => t.status === 'active').length;
@@ -307,13 +300,6 @@ export default function AdminDashboard() {
                                                         className="text-xs flex items-center gap-1 rounded-md bg-neutral-100 dark:bg-neutral-800 px-3 py-1.5 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition font-medium cursor-pointer"
                                                     >
                                                         <Edit className="h-3 w-3" /> Edit
-                                                    </button>
-                                                    <button
-                                                        onClick={() => handleDelete(t.trackingId)}
-                                                        className="text-xs flex items-center gap-1 rounded-md bg-red-100 dark:bg-red-500/10 text-red-600 dark:text-red-400 px-3 py-1.5 hover:bg-red-200 dark:hover:bg-red-500/20 transition font-medium cursor-pointer"
-                                                        title="Delete Shipment"
-                                                    >
-                                                        <Trash2 className="h-3 w-3" /> Delete
                                                     </button>
                                                     <select
                                                         value={t.status}
