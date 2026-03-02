@@ -1,0 +1,282 @@
+{
+  "trackings": [
+    {
+      "trackingId": "TRK-225656",
+      "startDate": "2026-03-11",
+      "destinationCountry": "Canada",
+      "destinationCity": "Berlin",
+      "status": "returned",
+      "events": [
+        {
+          "day": 8,
+          "date": "March 20, 2026",
+          "time": "08:10 AM",
+          "location": "International Airport",
+          "title": "Arrived at Departure Airport",
+          "description": "Shipment is at the airport awaiting departure to the destination country.",
+          "eventCode": "AIR-301",
+          "warning": false
+        },
+        {
+          "day": 9,
+          "date": "March 23, 2026",
+          "time": "01:45 PM",
+          "location": "In Transit",
+          "title": "Departed on Flight",
+          "description": "Shipment has departed on an international flight.",
+          "eventCode": "AIR-305",
+          "warning": false
+        },
+        {
+          "day": 10,
+          "date": "March 24, 2026",
+          "time": "11:20 AM",
+          "location": "In Transit",
+          "title": "Arrived at Transit Hub",
+          "description": "Shipment has arrived at an intermediate transit hub.",
+          "eventCode": "HUB-401",
+          "warning": false
+        },
+        {
+          "day": 11,
+          "date": "March 25, 2026",
+          "time": "05:30 PM",
+          "location": "In Transit",
+          "title": "Departed Transit Hub",
+          "description": "Shipment has departed the intermediate transit hub.",
+          "eventCode": "HUB-405",
+          "warning": false
+        },
+        {
+          "day": 12,
+          "date": "March 26, 2026",
+          "time": "09:40 AM",
+          "location": "In Transit",
+          "title": "Connecting Flight Departed",
+          "description": "Shipment is on the final flight to the destination country.",
+          "eventCode": "AIR-410",
+          "warning": false
+        }
+      ]
+    },
+    {
+      "trackingId": "TRK-242424",
+      "startDate": "2026-03-26",
+      "destinationCountry": "Germany",
+      "destinationCity": "Australia",
+      "status": "active",
+      "events": [
+        {
+          "day": 1,
+          "date": "March 26, 2026",
+          "time": "08:45 AM",
+          "location": "Origin Facility",
+          "title": "Electronic Shipping Info Received",
+          "description": "The shipper has generated a shipment label, but the shipment has not yet been handed over to the carrier.",
+          "eventCode": "SYS-001",
+          "warning": false
+        },
+        {
+          "day": 2,
+          "date": "March 27, 2026",
+          "time": "02:30 PM",
+          "location": "Origin Facility",
+          "title": "Shipment Picked Up",
+          "description": "The carrier has picked up the shipment from the shipper.",
+          "eventCode": "ORG-012",
+          "warning": false
+        },
+        {
+          "day": 3,
+          "date": "March 30, 2026",
+          "time": "09:15 AM",
+          "location": "Origin Sort Facility",
+          "title": "Processed at Origin Hub",
+          "description": "Shipment has been processed and sorted at the origin processing facility.",
+          "eventCode": "ORG-055",
+          "warning": false
+        },
+        {
+          "day": 4,
+          "date": "March 31, 2026",
+          "time": "11:40 AM",
+          "location": "Origin Sort Facility",
+          "title": "Departed Origin Hub",
+          "description": "Shipment has left the origin facility and is in transit to the export gateway.",
+          "eventCode": "ORG-058",
+          "warning": false
+        },
+        {
+          "day": 5,
+          "date": "April 1, 2026",
+          "time": "04:20 PM",
+          "location": "Export Gateway",
+          "title": "Arrived at Export Gateway",
+          "description": "Shipment has arrived at the international export facility.",
+          "eventCode": "EXP-101",
+          "warning": false
+        },
+        {
+          "day": 6,
+          "date": "April 2, 2026",
+          "time": "10:05 AM",
+          "location": "Export Customs",
+          "title": "Customs Clearance Started",
+          "description": "Shipment has been submitted to export customs for review.",
+          "eventCode": "CUS-201",
+          "warning": false
+        },
+        {
+          "day": 7,
+          "date": "April 3, 2026",
+          "time": "03:50 PM",
+          "location": "Export Customs",
+          "title": "Export Customs Cleared",
+          "description": "Customs clearance is complete. Shipment is ready for international departure.",
+          "eventCode": "CUS-205",
+          "warning": false
+        },
+        {
+          "day": 8,
+          "date": "April 6, 2026",
+          "time": "08:10 AM",
+          "location": "International Airport",
+          "title": "Arrived at Departure Airport",
+          "description": "Shipment is at the airport awaiting departure to the destination country.",
+          "eventCode": "AIR-301",
+          "warning": false
+        },
+        {
+          "day": 9,
+          "date": "April 7, 2026",
+          "time": "01:45 PM",
+          "location": "In Transit",
+          "title": "Departed on Flight",
+          "description": "Shipment has departed on an international flight.",
+          "eventCode": "AIR-305",
+          "warning": false
+        },
+        {
+          "day": 10,
+          "date": "April 8, 2026",
+          "time": "11:20 AM",
+          "location": "In Transit",
+          "title": "Arrived at Transit Hub",
+          "description": "Shipment has arrived at an intermediate transit hub.",
+          "eventCode": "HUB-401",
+          "warning": false
+        },
+        {
+          "day": 11,
+          "date": "April 9, 2026",
+          "time": "05:30 PM",
+          "location": "In Transit",
+          "title": "Departed Transit Hub",
+          "description": "Shipment has departed the intermediate transit hub.",
+          "eventCode": "HUB-405",
+          "warning": false
+        },
+        {
+          "day": 12,
+          "date": "April 10, 2026",
+          "time": "09:40 AM",
+          "location": "In Transit",
+          "title": "Connecting Flight Departed",
+          "description": "Shipment is on the final flight to the destination country.",
+          "eventCode": "AIR-410",
+          "warning": false
+        },
+        {
+          "day": 13,
+          "date": "April 13, 2026",
+          "time": "02:15 PM",
+          "location": "Destination Airport",
+          "title": "Arrived at Destination Airport",
+          "description": "Shipment has touched down in the destination country.",
+          "eventCode": "AIR-501",
+          "warning": false
+        },
+        {
+          "day": 14,
+          "date": "April 14, 2026",
+          "time": "10:00 AM",
+          "location": "Import Customs",
+          "title": "Submitted to Import Customs",
+          "description": "Shipment has been handed over to destination customs for processing.",
+          "eventCode": "CUS-601",
+          "warning": false
+        },
+        {
+          "day": 15,
+          "date": "April 15, 2026",
+          "time": "04:25 PM",
+          "location": "Import Customs",
+          "title": "Customs Processing",
+          "description": "Shipment is undergoing routine customs inspection.",
+          "eventCode": "CUS-603",
+          "warning": true
+        },
+        {
+          "day": 16,
+          "date": "April 16, 2026",
+          "time": "11:50 AM",
+          "location": "Import Customs",
+          "title": "Import Customs Cleared",
+          "description": "Shipment has been released by customs and handed to the local carrier.",
+          "eventCode": "CUS-609",
+          "warning": false
+        },
+        {
+          "day": 17,
+          "date": "April 17, 2026",
+          "time": "08:30 AM",
+          "location": "National Hub, Germany",
+          "title": "Arrived at Germany Hub",
+          "description": "Shipment has arrived at the primary sorting facility in Germany.",
+          "eventCode": "HUB-701",
+          "warning": false
+        },
+        {
+          "day": 18,
+          "date": "April 20, 2026",
+          "time": "02:15 PM",
+          "location": "Regional Center, Germany",
+          "title": "Processed at Regional Facility",
+          "description": "Shipment sorted at regional processing center serving Australia.",
+          "eventCode": "DE-802",
+          "warning": false
+        },
+        {
+          "day": 19,
+          "date": "April 21, 2026",
+          "time": "09:05 AM",
+          "location": "Australia, Germany",
+          "title": "Arrived at Local Facility",
+          "description": "Shipment has arrived at the final delivery depot.",
+          "eventCode": "DE-901",
+          "warning": false
+        },
+        {
+          "day": 20,
+          "date": "April 22, 2026",
+          "time": "07:30 AM",
+          "location": "Australia, Germany",
+          "title": "Out for Delivery",
+          "description": "Shipment has been loaded onto the delivery vehicle.",
+          "eventCode": "DE-905",
+          "warning": false
+        },
+        {
+          "day": 21,
+          "date": "April 23, 2026",
+          "time": "01:45 PM",
+          "location": "Australia, Germany",
+          "title": "Delivered",
+          "description": "Shipment has been successfully delivered to the recipient.",
+          "eventCode": "DE-999",
+          "warning": false
+        }
+      ]
+    }
+  ]
+}
