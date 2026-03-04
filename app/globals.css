@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfbfd;
-  --foreground: #1d1d1f;
-  --accent: #0071E3;
+  --background: #F0F3F7;
+  --foreground: #020B24;
+  --accent: #00388C;
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.5);
 }
@@ -18,9 +18,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #000000;
-    --foreground: #f5f5f7;
-    --glass-bg: rgba(28, 28, 30, 0.7);
+    --background: #020B24;
+    --foreground: #F0F3F7;
+    --glass-bg: rgba(10, 28, 64, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
   }
 }
@@ -76,6 +76,6 @@ body {
 
 /* Timeline specific line */
 .timeline-line {
-  background: linear-gradient(to bottom, var(--accent) 0%, rgba(0, 113, 227, 0.2) 100%);
+  background: linear-gradient(to bottom, var(--accent) 0%, rgba(0, 56, 140, 0.2) 100%);
   width: 2px;
 }

@@ -9,7 +9,7 @@ async function seed() {
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const db = client.db('tropicade');
+        const db = client.db('titanxlogistics');
         const collection = db.collection('trackings');
 
         // Read local data

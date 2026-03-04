@@ -47,8 +47,8 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-7xl mb-6">
-              Tropicade. <br className="hidden sm:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0071E3] to-blue-400">
+              TitanXLogistics. <br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00388C] to-blue-400">
                 Designed to Move the World.
               </span>
             </h1>
@@ -64,7 +64,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="mt-12 max-w-xl mx-auto"
           >
-            <form onSubmit={handleSearch} className="group relative rounded-full p-2 bg-white/5 dark:bg-black/20 ring-1 ring-inset ring-black/5 dark:ring-white/10 shadow-2xl backdrop-blur-xl transition hover:ring-black/10 dark:hover:ring-white/20 focus-within:ring-[#0071E3] dark:focus-within:ring-[#0071E3]">
+            <form onSubmit={handleSearch} className="group relative rounded-full p-2 bg-white/5 dark:bg-black/20 ring-1 ring-inset ring-black/5 dark:ring-white/10 shadow-2xl backdrop-blur-xl transition hover:ring-black/10 dark:hover:ring-white/20 focus-within:ring-[#00388C] dark:focus-within:ring-[#00388C]">
               <div className="flex items-center">
                 <input
                   type="text"
@@ -102,7 +102,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="text-base/7 font-semibold text-[#0071E3]">Unmatched Clarity</h2>
+            <h2 className="text-base/7 font-semibold text-[#00388C]">Unmatched Clarity</h2>
             <p className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Every detail, perfected.</p>
           </motion.div>
 
@@ -125,8 +125,8 @@ export default function Home() {
                 >
                   <GlassCard className="flex flex-col h-full p-8">
                     <dt className="flex items-center gap-x-3 text-lg font-semibold text-foreground mb-4">
-                      <div className="flex bg-[#0071E3]/10 dark:bg-[#0071E3]/20 p-2.5 rounded-lg">
-                        <feature.icon className="h-6 w-6 text-[#0071E3]" aria-hidden="true" />
+                      <div className="flex bg-[#00388C]/10 dark:bg-[#00388C]/20 p-2.5 rounded-lg">
+                        <feature.icon className="h-6 w-6 text-[#00388C]" aria-hidden="true" />
                       </div>
                       {feature.name}
                     </dt>

@@ -94,7 +94,7 @@ export function EditEventsModal({ tracking, onClose, onSave }) {
                                                     type="text"
                                                     value={ev.date}
                                                     onChange={(e) => handleEventChange(idx, 'date', e.target.value)}
-                                                    className="w-full rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none"
+                                                    className="w-full rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#00388C] outline-none"
                                                 />
                                             </div>
                                             <div>
@@ -103,7 +103,7 @@ export function EditEventsModal({ tracking, onClose, onSave }) {
                                                     type="text"
                                                     value={ev.time}
                                                     onChange={(e) => handleEventChange(idx, 'time', e.target.value)}
-                                                    className="w-full rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none"
+                                                    className="w-full rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#00388C] outline-none"
                                                 />
                                             </div>
                                             <div className="md:col-span-2">
@@ -112,7 +112,7 @@ export function EditEventsModal({ tracking, onClose, onSave }) {
                                                     type="text"
                                                     value={ev.title}
                                                     onChange={(e) => handleEventChange(idx, 'title', e.target.value)}
-                                                    className="w-full font-semibold rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none"
+                                                    className="w-full font-semibold rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#00388C] outline-none"
                                                 />
                                             </div>
                                             <div className="md:col-span-2">
@@ -121,7 +121,7 @@ export function EditEventsModal({ tracking, onClose, onSave }) {
                                                     type="text"
                                                     value={ev.location}
                                                     onChange={(e) => handleEventChange(idx, 'location', e.target.value)}
-                                                    className="w-full rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none"
+                                                    className="w-full rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#00388C] outline-none"
                                                 />
                                             </div>
                                             <div className="md:col-span-2">
@@ -130,7 +130,7 @@ export function EditEventsModal({ tracking, onClose, onSave }) {
                                                     value={ev.description}
                                                     onChange={(e) => handleEventChange(idx, 'description', e.target.value)}
                                                     rows={2}
-                                                    className="w-full rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none"
+                                                    className="w-full rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#00388C] outline-none"
                                                 />
                                             </div>
                                             <div>
@@ -139,7 +139,7 @@ export function EditEventsModal({ tracking, onClose, onSave }) {
                                                     type="text"
                                                     value={ev.eventCode}
                                                     onChange={(e) => handleEventChange(idx, 'eventCode', e.target.value)}
-                                                    className="w-full font-mono rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none"
+                                                    className="w-full font-mono rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none px-3 py-2 text-sm focus:ring-2 focus:ring-[#00388C] outline-none"
                                                 />
                                             </div>
                                             <div className="flex items-center gap-2 pt-6">
@@ -148,7 +148,7 @@ export function EditEventsModal({ tracking, onClose, onSave }) {
                                                     id={`warning-${idx}`}
                                                     checked={ev.warning || false}
                                                     onChange={(e) => handleEventChange(idx, 'warning', e.target.checked)}
-                                                    className="w-4 h-4 text-[#0071E3] bg-neutral-100 border-gray-300 rounded focus:ring-[#0071E3]"
+                                                    className="w-4 h-4 text-[#0071E3] bg-neutral-100 border-gray-300 rounded focus:ring-[#00388C]"
                                                 />
                                                 <label htmlFor={`warning-${idx}`} className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
                                                     Warning Icon Active

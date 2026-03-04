@@ -4,8 +4,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Tropicade",
-  description: "Tropicade - Designed to Move the World. Experience next-generation tracking.",
+  title: "TitanXLogistics",
+  description: "TitanXLogistics - Designed to Move the World. Experience next-generation tracking.",
 };
 
 export default function RootLayout({ children }) {
@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
                 <div className="h-6 w-6 rounded-md bg-[#0071E3] flex items-center justify-center">
                   <div className="h-2 w-2 bg-white rounded-full 0" />
                 </div>
-                Tropicade
+                TitanXLogistics
               </div>
               <div className="flex gap-6 text-sm font-medium text-neutral-600 dark:text-neutral-300">
                 <a href="/" className="hover:text-foreground transition-colors">Track</a>

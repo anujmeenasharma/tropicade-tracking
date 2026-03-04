@@ -33,13 +33,13 @@ export function TrackingTimeline({ events = [] }) {
                             className="relative"
                         >
                             {/* Timeline dot */}
-                            <div className="absolute -left-10 sm:-left-12 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-white dark:bg-black shadow-[0_0_15px_rgba(0,113,227,0.3)] border-2 border-[#0071E3] z-10">
+                            <div className="absolute -left-10 sm:-left-12 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-white dark:bg-black shadow-[0_0_15px_rgba(0,56,140,0.3)] border-2 border-[#00388C] z-10">
                                 {event.warning ? (
                                     <AlertCircle className="h-4 w-4 text-orange-500" />
                                 ) : event.eventCode.endsWith('-999') ? (
                                     <CheckCircle2 className="h-4 w-4 text-green-500" />
                                 ) : (
-                                    <div className="h-2 w-2 rounded-full bg-[#0071E3]" />
+                                    <div className="h-2 w-2 rounded-full bg-[#00388C]" />
                                 )}
                             </div>
 

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export function Button({ children, className, variant = "primary", ...props }) {
     const variants = {
         primary: "bg-black text-white dark:bg-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200",
-        accent: "bg-[#0071E3] text-white hover:bg-[#0077ec]",
+        accent: "bg-[#00388C] text-white hover:bg-[#002a6b]",
         outline: "border border-neutral-300 dark:border-neutral-700 bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800",
         ghost: "bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800/50"
     };

@@ -25,7 +25,19 @@ export default function AdminDashboard() {
     const [editingTracking, setEditingTracking] = useState(null);
     const [copiedId, setCopiedId] = useState(null);
 
+    function generateTrackingId() {
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const numbers = '0123456789';
+        let id = 'TXK-';
+        for (let i = 0; i < 5; i++) {
+            id += numbers.charAt(Math.floor(Math.random() * numbers.length));
+        }
+        id += letters.charAt(Math.floor(Math.random() * letters.length));
+        return id;
+    }
+
     useEffect(() => {
+        setTrackingId(generateTrackingId());
         loadData();
     }, []);
 
@@ -52,7 +64,7 @@ export default function AdminDashboard() {
             alert(res.error);
         } else {
             setSuccessMsg(`Tracking ${trackingId} created successfully!`);
-            setTrackingId('');
+            setTrackingId(generateTrackingId());
             setCity('');
             loadData();
         }
@@ -131,7 +143,7 @@ export default function AdminDashboard() {
                         <p className="text-4xl font-semibold mt-2">{trackings.length}</p>
                     </GlassCard>
                     <GlassCard className="p-6 flex flex-col justify-between">
-                        <h3 className="text-sm font-medium text-[#0071E3]">Active</h3>
+                        <h3 className="text-sm font-medium text-[#00388C]">Active</h3>
                         <p className="text-4xl font-semibold mt-2">{activeCount}</p>
                     </GlassCard>
                     <GlassCard className="p-6 flex flex-col justify-between">
@@ -148,21 +160,22 @@ export default function AdminDashboard() {
                     {/* Create Tracking Form */}
                     <GlassCard className="p-8 lg:col-span-1 h-fit">
                         <div className="mb-6 flex items-center gap-2">
-                            <Package className="h-5 w-5 text-[#0071E3]" />
+                            <Package className="h-5 w-5 text-[#00388C]" />
                             <h2 className="text-xl font-semibold">New Tracking</h2>
                         </div>
 
                         <form onSubmit={handleCreate} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium mb-1">Tracking ID</label>
-                                <input
-                                    required
-                                    type="text"
-                                    value={trackingId}
-                                    onChange={e => setTrackingId(e.target.value)}
-                                    placeholder="e.g. TRK-99281A"
-                                    className="w-full rounded-xl border-none bg-neutral-100 dark:bg-neutral-900 px-4 py-3 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none transition-all"
-                                />
+                                <label className="block text-sm font-medium mb-1">Tracking ID (Auto-Generated)</label>
+                                <div className="flex gap-2">
+                                    <input
+                                        required
+                                        readOnly
+                                        type="text"
+                                        value={trackingId}
+                                        className="flex-1 rounded-xl border-none bg-neutral-200 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 px-4 py-3 text-sm focus:outline-none cursor-not-allowed transition-all font-mono"
+                                    />
+                                </div>
                             </div>
 
                             <div>
@@ -172,7 +185,7 @@ export default function AdminDashboard() {
                                     type="date"
                                     value={startDate}
                                     onChange={e => setStartDate(e.target.value)}
-                                    className="w-full rounded-xl border-none bg-neutral-100 dark:bg-neutral-900 px-4 py-3 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none transition-all"
+                                    className="w-full rounded-xl border-none bg-neutral-100 dark:bg-neutral-900 px-4 py-3 text-sm focus:ring-2 focus:ring-[#00388C] outline-none transition-all"
                                 />
                             </div>
 
@@ -181,7 +194,7 @@ export default function AdminDashboard() {
                                 <select
                                     value={country}
                                     onChange={e => setCountry(e.target.value)}
-                                    className="w-full rounded-xl border-none bg-neutral-100 dark:bg-neutral-900 px-4 py-3 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none transition-all"
+                                    className="w-full rounded-xl border-none bg-neutral-100 dark:bg-neutral-900 px-4 py-3 text-sm focus:ring-2 focus:ring-[#00388C] outline-none transition-all"
                                 >
                                     <option>United States</option>
                                     <option>United Kingdom</option>
@@ -202,7 +215,7 @@ export default function AdminDashboard() {
                                     value={city}
                                     onChange={e => setCity(e.target.value)}
                                     placeholder="e.g. Berlin"
-                                    className="w-full rounded-xl border-none bg-neutral-100 dark:bg-neutral-900 px-4 py-3 text-sm focus:ring-2 focus:ring-[#0071E3] outline-none transition-all"
+                                    className="w-full rounded-xl border-none bg-neutral-100 dark:bg-neutral-900 px-4 py-3 text-sm focus:ring-2 focus:ring-[#00388C] outline-none transition-all"
                                 />
                             </div>
 
@@ -241,13 +254,13 @@ export default function AdminDashboard() {
                                         placeholder="Search ID..."
                                         value={searchTerm}
                                         onChange={e => setSearchTerm(e.target.value)}
-                                        className="w-full rounded-full bg-neutral-100 dark:bg-neutral-900 pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0071E3]"
+                                        className="w-full rounded-full bg-neutral-100 dark:bg-neutral-900 pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00388C]"
                                     />
                                 </div>
                                 <select
                                     value={filterCountry}
                                     onChange={e => setFilterCountry(e.target.value)}
-                                    className="rounded-full bg-neutral-100 dark:bg-neutral-900 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0071E3]"
+                                    className="rounded-full bg-neutral-100 dark:bg-neutral-900 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00388C]"
                                 >
                                     <option value="">All Countries</option>
                                     {Array.from(new Set(trackings.map(t => t.destinationCountry))).map(c => (

@@ -75,7 +75,7 @@ export default async function TrackPage({ params }) {
                         </p>
                         <div className="mt-1">
                             <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold ${isDelivered ? 'bg-green-100 text-green-800 dark:bg-green-500/20 dark:text-green-300' :
-                                isActive ? 'bg-[#0071E3]/10 text-[#0071E3] dark:text-[#0071E3]' :
+                                isActive ? 'bg-[#00388C]/10 text-[#00388C] dark:text-[#00388C]' :
                                     'bg-orange-100 text-orange-800 dark:bg-orange-500/20 dark:text-orange-300'
                                 }`}>
                                 {trackingData.status.charAt(0).toUpperCase() + trackingData.status.slice(1)}
