@@ -4,6 +4,7 @@ import { GlassCard } from "../../../components/ui/GlassCard";
 import { Package, Clock, MapPin, Search } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../../../components/ui/Button";
+import { parse, startOfDay } from "date-fns";
 
 // Assuming we bypass Next.js static generation caching for file data
 export const dynamic = 'force-dynamic';
@@ -12,6 +13,19 @@ export default async function TrackPage({ params }) {
     const resolvedParams = await Promise.resolve(params);
     const id = resolvedParams?.id;
     const trackingData = await getTrackingById(id);
+
+    // Filter events to only show those whose date has arrived (date <= today)
+    if (trackingData && trackingData.events) {
+        const today = startOfDay(new Date());
+        trackingData.events = trackingData.events.filter(event => {
+            try {
+                const eventDate = startOfDay(parse(event.date, 'MMMM d, yyyy', new Date()));
+                return eventDate <= today;
+            } catch {
+                return true; // Show event if date can't be parsed
+            }
+        });
+    }
 
     if (!trackingData) {
         return (
