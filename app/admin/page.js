@@ -15,7 +15,7 @@ export default function AdminDashboard() {
     // Form state
     const [trackingId, setTrackingId] = useState('');
     const [startDate, setStartDate] = useState('');
-    const [country, setCountry] = useState('United States');
+    const [country, setCountry] = useState('Australia');
     const [city, setCity] = useState('');
     const [creating, setCreating] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
@@ -196,42 +196,42 @@ export default function AdminDashboard() {
                                     onChange={e => setCountry(e.target.value)}
                                     className="w-full rounded-xl border-none bg-neutral-100 dark:bg-neutral-900 px-4 py-3 text-sm focus:ring-2 focus:ring-[#00388C] outline-none transition-all"
                                 >
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>United Kingdom</option>
                                     <option>Australia</option>
-                                    <option>Germany</option>
-                                    <option>France</option>
-                                    <option>Italy</option>
-                                    <option>Spain</option>
-                                    <option>Japan</option>
-                                    <option>China</option>
-                                    <option>India</option>
-                                    <option>Brazil</option>
-                                    <option>Mexico</option>
-                                    <option>Netherlands</option>
-                                    <option>Sweden</option>
-                                    <option>Switzerland</option>
                                     <option>Austria</option>
                                     <option>Belgium</option>
+                                    <option>Brazil</option>
                                     <option>Bulgaria</option>
+                                    <option>Canada</option>
+                                    <option>China</option>
                                     <option>Croatia</option>
                                     <option>Cyprus</option>
                                     <option>Czech Republic</option>
                                     <option>Denmark</option>
                                     <option>Estonia</option>
                                     <option>Finland</option>
+                                    <option>France</option>
+                                    <option>Germany</option>
                                     <option>Greece</option>
+                                    <option>India</option>
                                     <option>Ireland</option>
+                                    <option>Italy</option>
+                                    <option>Japan</option>
                                     <option>Latvia</option>
                                     <option>Lithuania</option>
                                     <option>Luxembourg</option>
                                     <option>Malta</option>
+                                    <option>Mexico</option>
+                                    <option>Netherlands</option>
                                     <option>Poland</option>
                                     <option>Portugal</option>
                                     <option>Romania</option>
                                     <option>Slovakia</option>
                                     <option>Slovenia</option>
+                                    <option>Spain</option>
+                                    <option>Sweden</option>
+                                    <option>Switzerland</option>
+                                    <option>United Kingdom</option>
+                                    <option>United States</option>
                                 </select>
                             </div>
 
@@ -291,7 +291,7 @@ export default function AdminDashboard() {
                                     className="rounded-full bg-neutral-100 dark:bg-neutral-900 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00388C]"
                                 >
                                     <option value="">All Countries</option>
-                                    {Array.from(new Set(trackings.map(t => t.destinationCountry))).map(c => (
+                                    {Array.from(new Set(trackings.map(t => t.destinationCountry))).sort().map(c => (
                                         <option key={c} value={c}>{c}</option>
                                     ))}
                                 </select>
