@@ -79,3 +79,18 @@ body {
   background: linear-gradient(to bottom, var(--accent) 0%, rgba(0, 56, 140, 0.2) 100%);
   width: 2px;
 }
+
+/* Fix Bootstrap conflicts with Tailwind */
+/* Tailwind defines .collapse as visibility: collapse, hiding bootstrap menus */
+.collapse.show {
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* On desktop sizes we always need it visible if toggled by media queries */
+@media (min-width: 1200px) {
+  .collapse.navbar-collapse {
+    visibility: visible !important;
+    display: block !important;
+  }
+}

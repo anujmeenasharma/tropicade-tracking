@@ -5,6 +5,7 @@ import { Package, Clock, MapPin, Search } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../../../components/ui/Button";
 import { parse, startOfDay } from "date-fns";
+import Navbar from "../../../components/Navbar";
 
 // Assuming we bypass Next.js static generation caching for file data
 export const dynamic = 'force-dynamic';
@@ -51,8 +52,9 @@ export default async function TrackPage({ params }) {
     const isActive = trackingData.status === 'active';
 
     return (
-        <div className="min-h-screen bg-background py-16 px-6 sm:px-12">
-            <div className="max-w-4xl mx-auto">
+        <div className="min-h-screen bg-background">
+            <Navbar />
+            <div className="max-w-4xl mx-auto py-16 px-6 sm:px-12">
 
                 {/* Header Section */}
                 <header className="mb-12 text-center">
