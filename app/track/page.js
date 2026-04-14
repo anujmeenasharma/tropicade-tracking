@@ -57,7 +57,7 @@ export default function Home() {
               </span>
             </h1>
             <p className="mt-6 text-lg tracking-wide text-neutral-500 leading-relaxed max-w-2xl mx-auto">
-              Experience the next generation of global supply chain tracking. Seamlessly beautiful, instantly informative, and built to the highest standards.
+              Experience the next generation of global supply chain tracking.
             </p>
           </motion.div>
 
