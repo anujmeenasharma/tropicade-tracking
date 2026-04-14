@@ -23,17 +23,8 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #E8ECF2;
-    --card-bg: #0F1E33;
-    --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-    --card-border: rgba(255, 255, 255, 0.08);
-    --label-color: #6B7A90;
-    --badge-bg: rgba(255, 255, 255, 0.08);
-    --badge-text: #9AAAC0;
-  }
-}
+
+
 
 body {
   background: var(--background);

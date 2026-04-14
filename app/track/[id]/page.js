@@ -52,48 +52,54 @@ export default async function TrackPage({ params }) {
     const isActive = trackingData.status === 'active';
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen" style={{background: '#E8ECF2'}}>
             <Navbar />
             <div className="max-w-4xl mx-auto py-16 px-6 sm:px-12">
 
                 {/* Header Section */}
                 <header className="mb-12 text-center">
-                    <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style={{color: 'var(--foreground)'}}>
+                    <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style={{color: '#0A1929'}}>
                         Shipment Status
                     </h1>
-                    <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-mono" style={{background: 'var(--badge-bg)', color: 'var(--badge-text)'}}>
+                    <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-mono" style={{background: '#EEF0F5', color: '#5A6478'}}>
                         <Package className="h-4 w-4" />
                         {trackingData.trackingId}
                     </div>
                 </header>
 
-                {/* Overview Glass Card */}
+                {/* Overview Card */}
                 <GlassCard className="p-8 mb-16 flex flex-col md:flex-row justify-between gap-8 md:gap-4 items-center md:items-start text-center md:text-left">
                     <div className="flex-1 space-y-1">
-                        <p className="text-sm font-medium" style={{color: 'var(--label-color)'}}>Origin Start Date</p>
-                        <p className="text-base font-semibold" style={{color: 'var(--foreground)'}}>{trackingData.startDate}</p>
+                        <p className="text-sm font-medium" style={{color: '#8A96A8'}}>Origin Start Date</p>
+                        <p className="text-base font-semibold" style={{color: '#0A1929'}}>{trackingData.startDate}</p>
                     </div>
 
-                    <div className="flex-1 space-y-1 md:border-l md:pl-8" style={{borderColor: 'var(--card-border)'}}>
-                        <p className="text-sm font-medium flex items-center justify-center md:justify-start gap-1" style={{color: 'var(--label-color)'}}>
+                    <div className="flex-1 space-y-1 md:border-l md:pl-8" style={{borderColor: '#E2E6EF'}}>
+                        <p className="text-sm font-medium flex items-center justify-center md:justify-start gap-1" style={{color: '#8A96A8'}}>
                             <MapPin className="h-4 w-4" />
                             Destination
                         </p>
-                        <p className="text-base font-semibold" style={{color: 'var(--foreground)'}}>
+                        <p className="text-base font-semibold" style={{color: '#0A1929'}}>
                             {trackingData.destinationCity}, {trackingData.destinationCountry}
                         </p>
                     </div>
 
-                    <div className="flex-1 space-y-1 md:border-l md:pl-8" style={{borderColor: 'var(--card-border)'}}>
-                        <p className="text-sm font-medium flex items-center justify-center md:justify-start gap-1" style={{color: 'var(--label-color)'}}>
+                    <div className="flex-1 space-y-1 md:border-l md:pl-8" style={{borderColor: '#E2E6EF'}}>
+                        <p className="text-sm font-medium flex items-center justify-center md:justify-start gap-1" style={{color: '#8A96A8'}}>
                             <Clock className="h-4 w-4" />
                             Current Status
                         </p>
                         <div className="mt-1">
-                            <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold ${isDelivered ? 'bg-green-100 text-green-800' :
-                                isActive ? 'text-[#1E4DB7]' :
-                                    'bg-orange-100 text-orange-800'
-                                }`} style={isActive ? {background: 'var(--active-badge-bg)', color: 'var(--active-badge-text)'} : {}}>
+                            <span style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                borderRadius: '9999px',
+                                padding: '4px 12px',
+                                fontSize: '0.875rem',
+                                fontWeight: 600,
+                                background: isDelivered ? '#DCFCE7' : isActive ? '#EEF4FF' : '#FEF3C7',
+                                color: isDelivered ? '#166534' : isActive ? '#1E4DB7' : '#92400E',
+                            }}>
                                 {trackingData.status.charAt(0).toUpperCase() + trackingData.status.slice(1)}
                             </span>
                         </div>
@@ -102,7 +108,7 @@ export default async function TrackPage({ params }) {
 
                 {/* The Timeline UI */}
                 <div>
-                    <h2 className="text-2xl font-semibold mb-8 pl-8 sm:pl-16" style={{color: 'var(--foreground)'}}>Travel History</h2>
+                    <h2 className="text-2xl font-semibold mb-8 pl-8 sm:pl-16" style={{color: '#0A1929'}}>Travel History</h2>
                     <TrackingTimeline events={trackingData.events} />
                 </div>
 

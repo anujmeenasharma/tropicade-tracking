@@ -46,31 +46,31 @@ export function TrackingTimeline({ events = [] }) {
 
                             {/* Timestamp left of line on larger screens, above on small */}
                             <div className="hidden sm:block absolute -left-48 top-6 w-32 text-right">
-                                <p className="text-sm font-medium text-foreground">{event.date}</p>
-                                <p className="text-xs text-neutral-500">{event.time}</p>
+                                <p className="text-sm font-medium" style={{color: '#0A1929'}}>{event.date}</p>
+                                <p className="text-xs" style={{color: '#8A96A8'}}>{event.time}</p>
                             </div>
 
                             <GlassCard className="p-6 ml-2 group">
                                 <div className="sm:hidden mb-4">
-                                    <p className="text-sm font-medium text-foreground">{event.date}</p>
-                                    <p className="text-xs text-neutral-500">{event.time}</p>
+                                    <p className="text-sm font-medium" style={{color: '#0A1929'}}>{event.date}</p>
+                                    <p className="text-xs" style={{color: '#8A96A8'}}>{event.time}</p>
                                 </div>
 
                                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                                     <div>
-                                        <h3 className="text-base font-semibold tracking-tight" style={{color: 'var(--foreground)'}}>
+                                        <h3 className="text-base font-semibold tracking-tight" style={{color: '#0A1929'}}>
                                             {event.title}
                                         </h3>
-                                        <p className="mt-0.5 text-sm font-medium text-black">
+                                        <p className="mt-0.5 text-sm font-medium" style={{color: '#0A1929'}}>
                                             {event.location}
                                         </p>
-                                        <p className="mt-3 text-sm leading-relaxed" style={{color: '#111', opacity: event.warning ? 1 : 0.8}}>
+                                        <p className="mt-3 text-sm leading-relaxed" style={{color: '#5A6478', opacity: event.warning ? 1 : undefined}}>
                                             {event.description}
                                         </p>
                                     </div>
 
                                     <div className="shrink-0 flex items-center gap-2">
-                                        <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-mono font-medium" style={{background: 'var(--badge-bg)', color: 'var(--badge-text)'}}>
+                                        <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-mono font-medium" style={{background: '#EEF0F5', color: '#5A6478'}}>
                                             {event.eventCode}
                                         </span>
                                     </div>
