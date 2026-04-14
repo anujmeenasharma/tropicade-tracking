@@ -1,11 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F0F3F7;
-  --foreground: #020B24;
-  --accent: #00388C;
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.5);
+  --background: #E8ECF2;
+  --foreground: #0A1929;
+  --accent: #1E4DB7;
+  --card-bg: #FFFFFF;
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --card-border: #E2E6EF;
+  --label-color: #8A96A8;
+  --link-color: #1E6BF5;
+  --badge-bg: #EEF0F5;
+  --badge-text: #5A6478;
+  --active-badge-bg: #EEF4FF;
+  --active-badge-text: #1E4DB7;
 }
 
 @theme inline {
@@ -18,10 +25,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #020B24;
-    --foreground: #F0F3F7;
-    --glass-bg: rgba(10, 28, 64, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --foreground: #E8ECF2;
+    --card-bg: #0F1E33;
+    --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --label-color: #6B7A90;
+    --badge-bg: rgba(255, 255, 255, 0.08);
+    --badge-text: #9AAAC0;
   }
 }
 
@@ -35,25 +45,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Glassmorphism utilities */
+/* Card utilities */
 .glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
 }
 
 .glass-card {
-  border-radius: 1rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
 }
 
 .dark .glass-card {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Hide scrollbar for clean look */
@@ -76,7 +82,7 @@ body {
 
 /* Timeline specific line */
 .timeline-line {
-  background: linear-gradient(to bottom, var(--accent) 0%, rgba(0, 56, 140, 0.2) 100%);
+  background: var(--accent);
   width: 2px;
 }
 

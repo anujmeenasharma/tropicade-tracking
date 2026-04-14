@@ -14,8 +14,9 @@ export function TrackingTimeline({ events = [] }) {
 
     return (
         <div className="relative py-8 pl-12 sm:pl-48 w-full max-w-3xl mx-auto">
-            {/* Glowing vertical line */}
-            <div className="absolute left-[23px] sm:left-[159px] top-10 bottom-10 w-[2px] rounded-full bg-neutral-200 dark:bg-neutral-800 z-0">
+            {/* Vertical line */}
+            <div className="absolute left-[23px] sm:left-[159px] top-10 bottom-10 w-[2px] rounded-full" style={{background: 'var(--card-border)'}} />
+            <div className="absolute left-[23px] sm:left-[159px] top-10 w-[2px] rounded-full overflow-hidden" style={{bottom: '2.5rem'}}>
                 <motion.div
                     className="absolute top-0 w-full rounded-full timeline-line"
                     initial={{ height: 0 }}
@@ -33,13 +34,13 @@ export function TrackingTimeline({ events = [] }) {
                             className="relative"
                         >
                             {/* Timeline dot */}
-                            <div className="absolute -left-10 sm:-left-12 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-white dark:bg-black shadow-[0_0_15px_rgba(0,56,140,0.3)] border-2 border-[#00388C] z-10">
+                            <div className="absolute -left-10 sm:-left-12 top-6 flex h-8 w-8 items-center justify-center rounded-full z-10" style={{background: 'var(--foreground)', boxShadow: '0 0 0 3px var(--background), 0 0 0 4px var(--accent)'}}>
                                 {event.warning ? (
-                                    <AlertCircle className="h-4 w-4 text-orange-500" />
+                                    <AlertCircle className="h-4 w-4 text-orange-400" />
                                 ) : event.eventCode.endsWith('-999') ? (
-                                    <CheckCircle2 className="h-4 w-4 text-green-500" />
+                                    <CheckCircle2 className="h-4 w-4 text-green-400" />
                                 ) : (
-                                    <div className="h-2 w-2 rounded-full bg-[#00388C]" />
+                                    <div className="h-2.5 w-2.5 rounded-full bg-white" />
                                 )}
                             </div>
 
@@ -57,19 +58,19 @@ export function TrackingTimeline({ events = [] }) {
 
                                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                                     <div>
-                                        <h3 className="text-lg font-semibold tracking-tight text-foreground">
+                                        <h3 className="text-base font-semibold tracking-tight" style={{color: 'var(--foreground)'}}>
                                             {event.title}
                                         </h3>
-                                        <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+                                        <p className="mt-0.5 text-sm font-medium text-black">
                                             {event.location}
                                         </p>
-                                        <p className="mt-4 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                                        <p className="mt-3 text-sm leading-relaxed" style={{color: '#111', opacity: event.warning ? 1 : 0.8}}>
                                             {event.description}
                                         </p>
                                     </div>
 
                                     <div className="shrink-0 flex items-center gap-2">
-                                        <span className="inline-flex items-center rounded-md bg-neutral-100 dark:bg-neutral-800 px-2 py-1 text-xs font-mono font-medium text-neutral-600 dark:text-neutral-400 ring-1 ring-inset ring-neutral-500/10">
+                                        <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-mono font-medium" style={{background: 'var(--badge-bg)', color: 'var(--badge-text)'}}>
                                             {event.eventCode}
                                         </span>
                                     </div>

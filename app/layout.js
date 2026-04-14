@@ -10,12 +10,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      {/* 
-        We force dark mode by adding 'dark' here and setting background to #000 
-        in CSS for that signature Apple midnight look. Adjust if light theme desired. 
-      */}
-      <body className={`${inter.className} min-h-screen bg-background text-foreground selection:bg-[#0071E3]/30 selection:text-white antialiased`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} min-h-screen text-foreground antialiased`}>
 
         {/* Main Content Area */}
         <main>
