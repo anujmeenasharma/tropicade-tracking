@@ -47,11 +47,15 @@ async function fixLocalhostUrls() {
     await mongoose.connect(MONGODB_URI);
     console.log('Connected to MongoDB.');
 
-    // Find all tracking documents where the synced tracking URL contains 'localhost' or has missing colons / slash typos
+    // Find all tracking documents where the synced tracking URL contains 'localhost', has missing colons / slash typos, or has double protocols like http://https://
     const query = {
       $or: [
         { 'shopifyFulfillment.tracking_url': { $regex: /localhost/i } },
         { 'shopifyFulfillment.tracking_urls': { $regex: /localhost/i } },
+        { 'shopifyFulfillment.tracking_url': { $regex: /https?:\/\/https?/i } },
+        { 'shopifyFulfillment.tracking_urls': { $regex: /https?:\/\/https?/i } },
+        { 'shopifyFulfillment.tracking_url': { $regex: /https?:\/\/http/i } },
+        { 'shopifyFulfillment.tracking_urls': { $regex: /https?:\/\/http/i } },
         { 'shopifyFulfillment.tracking_url': { $regex: /^https?\/\//i } },
         { 'shopifyFulfillment.tracking_urls': { $regex: /^https?\/\//i } },
         { 'shopifyFulfillment.tracking_url': { $regex: /^https?:\/[^\/]/i } },
