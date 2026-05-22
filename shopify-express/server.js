@@ -1,11 +1,16 @@
-require('dotenv').config();
+const path = require('path');
+// Load environment variables from shopify-express/.env first, then fallback to root .env
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
 const express = require('express');
 const mongoose = require('mongoose');
 const orderRoutes = require('./routes/orders');
 const { startCron } = require('./cron/worker');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+// Default to 3001 to avoid port conflicts with Next.js (usually on 3000)
+const PORT = process.env.EXPRESS_PORT || process.env.PORT || 3001;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
