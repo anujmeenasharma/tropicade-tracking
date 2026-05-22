@@ -25,22 +25,44 @@ function getNormalizedDomain(domain) {
     .trim();
 }
 
+function normalizeAppUrl(url) {
+  if (!url) return 'https://titanxlogistics.us';
+  let cleaned = url.trim();
+  if (/^https?\/\//i.test(cleaned)) {
+    cleaned = cleaned.replace(/^(https?)\/\//i, '$1://');
+  } else if (/^https?:\/([^/])/i.test(cleaned)) {
+    cleaned = cleaned.replace(/^(https?):\/([^/])/i, '$1://$2');
+  } else if (/^https?\/([^/])/i.test(cleaned)) {
+    cleaned = cleaned.replace(/^(https?)\/([^/])/i, '$1://$2');
+  } else if (!/^https?:\/\//i.test(cleaned)) {
+    cleaned = 'https://' + cleaned;
+  }
+  cleaned = cleaned.replace(/\/+$/, '');
+  return cleaned;
+}
+
 async function fixLocalhostUrls() {
   try {
     console.log('Connecting to database...');
     await mongoose.connect(MONGODB_URI);
     console.log('Connected to MongoDB.');
 
-    // Find all tracking documents where the synced tracking URL contains 'localhost'
+    // Find all tracking documents where the synced tracking URL contains 'localhost' or has missing colons / slash typos
     const query = {
       $or: [
         { 'shopifyFulfillment.tracking_url': { $regex: /localhost/i } },
-        { 'shopifyFulfillment.tracking_urls': { $regex: /localhost/i } }
+        { 'shopifyFulfillment.tracking_urls': { $regex: /localhost/i } },
+        { 'shopifyFulfillment.tracking_url': { $regex: /^https?\/\//i } },
+        { 'shopifyFulfillment.tracking_urls': { $regex: /^https?\/\//i } },
+        { 'shopifyFulfillment.tracking_url': { $regex: /^https?:\/[^\/]/i } },
+        { 'shopifyFulfillment.tracking_urls': { $regex: /^https?:\/[^\/]/i } },
+        { 'shopifyFulfillment.tracking_url': { $regex: /^https?\/[^\/]/i } },
+        { 'shopifyFulfillment.tracking_urls': { $regex: /^https?\/[^\/]/i } }
       ]
     };
 
     const trackings = await Tracking.find(query);
-    console.log(`Found ${trackings.length} tracking records containing 'localhost' URLs.`);
+    console.log(`Found ${trackings.length} tracking records containing 'localhost' or malformed URLs.`);
 
     if (trackings.length === 0) {
       console.log('No records to fix.');
@@ -60,7 +82,8 @@ async function fixLocalhostUrls() {
           continue;
         }
 
-        const newTrackingUrl = `${APP_URL}/track/${trackingId}`;
+        const normalizedAppUrl = normalizeAppUrl(APP_URL);
+        const newTrackingUrl = `${normalizedAppUrl}/track/${trackingId}`;
         console.log(`Updating order tracking on Shopify for trackingId ${trackingId} (Fulfillment ID: ${fulfillmentId})...`);
         console.log(`New tracking URL: ${newTrackingUrl}`);
 

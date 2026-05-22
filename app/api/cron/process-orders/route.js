@@ -13,6 +13,23 @@ function generateTrackingId() {
   return id;
 }
 
+function normalizeAppUrl(url) {
+  if (!url) return 'https://titanxlogistics.us';
+  let cleaned = url.trim();
+  if (/^https?\/\//i.test(cleaned)) {
+    cleaned = cleaned.replace(/^(https?)\/\//i, '$1://');
+  } else if (/^https?:\/([^/])/i.test(cleaned)) {
+    cleaned = cleaned.replace(/^(https?):\/([^/])/i, '$1://$2');
+  } else if (/^https?\/([^/])/i.test(cleaned)) {
+    cleaned = cleaned.replace(/^(https?)\/([^/])/i, '$1://$2');
+  } else if (!/^https?:\/\//i.test(cleaned)) {
+    cleaned = 'https://' + cleaned;
+  }
+  cleaned = cleaned.replace(/\/+$/, '');
+  return cleaned;
+}
+
+
 export async function GET(request) {
   const authHeader = request.headers.get('authorization');
   const { searchParams } = new URL(request.url);
@@ -79,7 +96,8 @@ export async function GET(request) {
         // 2. Sync fulfillment to Shopify
         let syncedToShopify = false;
         let shopifyFulfillment = null;
-        const trackingUrl = `${process.env.APP_URL || 'https://tropicade.com'}/track/${trackingId}`;
+        const normalizedAppUrl = normalizeAppUrl(process.env.APP_URL);
+        const trackingUrl = `${normalizedAppUrl}/track/${trackingId}`;
 
         try {
           const syncResult = await createShopifyFulfillment({

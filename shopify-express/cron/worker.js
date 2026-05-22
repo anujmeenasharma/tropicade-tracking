@@ -13,6 +13,22 @@ function generateTrackingId() {
   return id;
 }
 
+function normalizeAppUrl(url) {
+  if (!url) return 'https://titanxlogistics.us';
+  let cleaned = url.trim();
+  if (/^https?\/\//i.test(cleaned)) {
+    cleaned = cleaned.replace(/^(https?)\/\//i, '$1://');
+  } else if (/^https?:\/([^/])/i.test(cleaned)) {
+    cleaned = cleaned.replace(/^(https?):\/([^/])/i, '$1://$2');
+  } else if (/^https?\/([^/])/i.test(cleaned)) {
+    cleaned = cleaned.replace(/^(https?)\/([^/])/i, '$1://$2');
+  } else if (!/^https?:\/\//i.test(cleaned)) {
+    cleaned = 'https://' + cleaned;
+  }
+  cleaned = cleaned.replace(/\/+$/, '');
+  return cleaned;
+}
+
 // The core worker processing logic
 async function processPendingOrders() {
   console.log(`[Express Cron] Running pending orders check at ${new Date().toISOString()}`);
@@ -47,9 +63,10 @@ async function processPendingOrders() {
         );
 
         // 2. Sync fulfillment to Shopify
+        const normalizedAppUrl = normalizeAppUrl(process.env.APP_URL);
+        const trackingUrl = `${normalizedAppUrl}/track/${trackingId}`;
         let syncedToShopify = false;
         let shopifyFulfillment = null;
-        const trackingUrl = `${process.env.APP_URL || 'https://tropicade.com'}/track/${trackingId}`;
 
         try {
           const syncResult = await createShopifyFulfillment({
