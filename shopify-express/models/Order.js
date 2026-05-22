@@ -44,4 +44,4 @@ const ShopifyOrderSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('ShopifyOrder', ShopifyOrderSchema);
+module.exports = mongoose.model('ShopifyOrder', ShopifyOrderSchema, 'shopify_orders');
