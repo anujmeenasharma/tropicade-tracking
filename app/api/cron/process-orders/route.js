@@ -29,6 +29,20 @@ function normalizeAppUrl(url) {
   return cleaned;
 }
 
+function formatDateInTimezone(date, timeZone = process.env.TIMEZONE || 'Asia/Kolkata') {
+  const d = date ? new Date(date) : new Date();
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  const parts = formatter.formatToParts(d);
+  const year = parts.find(p => p.type === 'year').value;
+  const month = parts.find(p => p.type === 'month').value;
+  const day = parts.find(p => p.type === 'day').value;
+  return `${year}-${month}-${day}`;
+}
 
 export async function GET(request) {
   const authHeader = request.headers.get('authorization');
@@ -79,11 +93,9 @@ export async function GET(request) {
         
         let startDate;
         try {
-          startDate = orderCreatedDate 
-            ? new Date(orderCreatedDate).toISOString().split('T')[0] 
-            : new Date().toISOString().split('T')[0];
+          startDate = formatDateInTimezone(orderCreatedDate);
         } catch {
-          startDate = new Date().toISOString().split('T')[0];
+          startDate = formatDateInTimezone(new Date());
         }
 
         // 1. Generate Tracking Events using logic library

@@ -29,6 +29,21 @@ function normalizeAppUrl(url) {
   return cleaned;
 }
 
+function formatDateInTimezone(date, timeZone = process.env.TIMEZONE || 'Asia/Kolkata') {
+  const d = date ? new Date(date) : new Date();
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  const parts = formatter.formatToParts(d);
+  const year = parts.find(p => p.type === 'year').value;
+  const month = parts.find(p => p.type === 'month').value;
+  const day = parts.find(p => p.type === 'day').value;
+  return `${year}-${month}-${day}`;
+}
+
 // The core worker processing logic
 async function processPendingOrders() {
   console.log(`[Express Cron] Running pending orders check at ${new Date().toISOString()}`);
@@ -51,9 +66,7 @@ async function processPendingOrders() {
     for (const order of pendingOrders) {
       try {
         const trackingId = generateTrackingId();
-        const startDate = order.orderCreatedDate 
-          ? new Date(order.orderCreatedDate).toISOString().split('T')[0] 
-          : new Date().toISOString().split('T')[0];
+        const startDate = formatDateInTimezone(order.orderCreatedDate);
 
         // 1. Generate Timeline
         const events = generateTrackingTimeline(
