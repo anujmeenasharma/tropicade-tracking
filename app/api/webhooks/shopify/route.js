@@ -131,7 +131,8 @@ export async function POST(req) {
     const city = shippingAddress.city || 'Default City';
 
     // Calculate processAfter time (Next day morning 10 AM)
-    const processAfterTime = getNextDay10AM(orderCreatedDate);
+    // const processAfterTime = getNextDay10AM(orderCreatedDate);
+    const processAfterTime = new Date();
 
     // Store the order as unprocessed (processed: false) with a next-day 10 AM delay
     const client = await clientPromise;
