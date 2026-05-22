@@ -101,15 +101,17 @@ async function processPendingOrders() {
   }
 }
 
-// Schedule the cron job to run every minute for faster testing
+// Schedule the cron job to run every 5 minutes
 function startCron() {
-  // Run every minute
-  cron.schedule('* * * * *', processPendingOrders);
-  console.log('[Express Cron] Cron scheduler initialized (Interval: Every 1 minute).');
+  // '*/5 * * * *' = every 5 minutes
+  cron.schedule('*/5 * * * *', processPendingOrders);
+  console.log('[Express Cron] Cron scheduler initialized (Interval: Every 5 minutes).');
   
-  // Run immediately on startup for testing/verification
-  console.log('[Express Cron] Running initial cron job on startup...');
-  processPendingOrders();
+  // Optional: Run immediately on startup for testing/verification
+  if (process.env.RUN_CRON_ON_STARTUP === 'true') {
+    console.log('[Express Cron] Running initial cron job on startup...');
+    processPendingOrders();
+  }
 }
 
 module.exports = {

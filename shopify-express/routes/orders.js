@@ -83,8 +83,7 @@ router.post('/shopify', verifyShopifyWebhook, async (req, res) => {
     const city = shippingAddress.city || 'Default City';
 
     // Calculate processAfter time (Next day morning 10 AM)
-    // const processAfterTime = getNextDay10AM(orderCreatedDate);
-    const processAfterTime = new Date();
+    const processAfterTime = getNextDay10AM(orderCreatedDate);
 
     // Mongoose Upsert for Shopify Order (Marked as unprocessed, with next-day 10 AM delay)
     await Order.findOneAndUpdate(
