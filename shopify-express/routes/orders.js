@@ -69,7 +69,7 @@ router.post('/shopify', verifyShopifyWebhook, async (req, res) => {
     }
 
     const email = payload.email || payload.contact_email || '';
-    const shippingAddress = payload.shipping_address || {};
+    const billingAddress = payload.billing_address || payload.shipping_address || {};
 
     let orderCreatedDate = new Date();
     if (payload.created_at) {
@@ -79,8 +79,8 @@ router.post('/shopify', verifyShopifyWebhook, async (req, res) => {
       }
     }
 
-    const country = shippingAddress.country || 'United States';
-    const city = shippingAddress.city || 'Default City';
+    const country = billingAddress.country || 'United States';
+    const city = billingAddress.city || 'Default City';
 
     // Calculate processAfter time (Next day morning 10 AM)
     const processAfterTime = getNextDay10AM(orderCreatedDate);

@@ -116,7 +116,7 @@ export async function POST(req) {
     }
 
     const email = payload.email || payload.contact_email || '';
-    const shippingAddress = payload.shipping_address || {};
+    const billingAddress = payload.billing_address || payload.shipping_address || {};
     
     // Parse order date safely
     let orderCreatedDate = new Date();
@@ -127,8 +127,8 @@ export async function POST(req) {
       }
     }
 
-    const country = shippingAddress.country || 'United States';
-    const city = shippingAddress.city || 'Default City';
+    const country = billingAddress.country || 'United States';
+    const city = billingAddress.city || 'Default City';
 
     // Calculate processAfter time (Next day morning 10 AM)
     const processAfterTime = getNextDay10AM(orderCreatedDate);

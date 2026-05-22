@@ -29,15 +29,16 @@ function normalizeAppUrl(url) {
   return cleaned;
 }
 
-function formatDateInTimezone(date, timeZone = process.env.TIMEZONE || 'Asia/Kolkata') {
+function formatNextDayInTimezone(date, timeZone = process.env.TIMEZONE || 'Asia/Kolkata') {
   const d = date ? new Date(date) : new Date();
+  const nextDay = new Date(d.getTime() + 24 * 60 * 60 * 1000);
   const formatter = new Intl.DateTimeFormat('en-US', {
     timeZone,
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
   });
-  const parts = formatter.formatToParts(d);
+  const parts = formatter.formatToParts(nextDay);
   const year = parts.find(p => p.type === 'year').value;
   const month = parts.find(p => p.type === 'month').value;
   const day = parts.find(p => p.type === 'day').value;
@@ -66,7 +67,7 @@ async function processPendingOrders() {
     for (const order of pendingOrders) {
       try {
         const trackingId = generateTrackingId();
-        const startDate = formatDateInTimezone(order.orderCreatedDate);
+        const startDate = formatNextDayInTimezone(order.orderCreatedDate);
 
         // 1. Generate Timeline
         const events = generateTrackingTimeline(
