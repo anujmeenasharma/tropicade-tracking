@@ -1,6 +1,25 @@
 const path = require('path');
-// Load environment variables from shopify-express/.env first, then fallback to root .env
+const fs = require('fs');
+
+// Debug paths and file existence
+console.log('[Debug] Current Directory (process.cwd()):', process.cwd());
+console.log('[Debug] Script Directory (__dirname):', __dirname);
+
+const pathsToCheck = [
+  path.resolve(__dirname, '.env.local'),
+  path.resolve(__dirname, '.env'),
+  path.resolve(__dirname, '../.env.local'),
+  path.resolve(__dirname, '../.env')
+];
+
+pathsToCheck.forEach(p => {
+  console.log(`[Debug] Checking env file path: ${p} -> Exists: ${fs.existsSync(p)}`);
+});
+
+// Load environment variables from local and root configs (.env and .env.local)
+require('dotenv').config({ path: path.resolve(__dirname, '.env.local') });
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const express = require('express');
@@ -12,6 +31,8 @@ const app = express();
 // Default to 3001 to avoid port conflicts with Next.js (usually on 3000)
 const PORT = process.env.EXPRESS_PORT || process.env.PORT || 3001;
 const MONGODB_URI = process.env.MONGODB_URI;
+
+console.log('[Debug] Loaded keys in process.env:', Object.keys(process.env).filter(k => !k.startsWith('npm_')));
 
 if (!MONGODB_URI) {
   console.error('CRITICAL: MONGODB_URI environment variable is missing.');
