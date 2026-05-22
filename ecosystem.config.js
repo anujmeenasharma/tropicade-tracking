@@ -7,6 +7,7 @@ module.exports = {
       cwd: __dirname,
       instances: 1,
       exec_mode: 'fork',
+      env_file: '.env',
       env: {
         PORT: 3000,
         NODE_ENV: 'production'
@@ -18,6 +19,7 @@ module.exports = {
       cwd: require('path').join(__dirname, 'shopify-express'),
       instances: 1,
       exec_mode: 'fork',
+      env_file: require('path').join(__dirname, '.env'),
       env: {
         PORT: 3001,
         EXPRESS_PORT: 3001,
