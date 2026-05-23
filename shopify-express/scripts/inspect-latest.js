@@ -14,7 +14,7 @@ async function run() {
   console.log('Connected to DB');
   
   console.log('\n--- LATEST 10 ORDERS ---');
-  const orders = await Order.find({}).sort({ createdAt: -1 }).limit(10);
+  const orders = await Order.find({}).sort({ _id: -1 }).limit(10);
   orders.forEach(o => {
     console.log(`Order ID: ${o.shopifyOrderId}`);
     console.log(`  Customer: ${o.customerEmail}`);
@@ -27,7 +27,7 @@ async function run() {
   });
 
   console.log('\n--- LATEST 10 TRACKINGS ---');
-  const trackings = await Tracking.find({}).sort({ createdAt: -1 }).limit(10);
+  const trackings = await Tracking.find({}).sort({ _id: -1 }).limit(10);
   trackings.forEach(t => {
     console.log(`Tracking ID: ${t.trackingId}`);
     console.log(`  Order ID: ${t.shopifyFulfillment?.order_id}`);
