@@ -227,8 +227,78 @@ async function run() {
       ]
     });
 
+    const email = order.email || order.contact_email || '';
+    const billingAddress = order.billing_address || order.shipping_address || {};
+    const country = billingAddress.country || 'United States';
+    const city = billingAddress.city || 'Default City';
+    const orderCreatedDate = new Date(order.created_at);
+    const processAfter = getNextDay10AM(orderCreatedDate);
+
     if (isAlreadyFulfilled) {
-      console.log(`  -> Order is already fulfilled on Shopify. Skipping.`);
+      // Check if there is a Titan X Logistics fulfillment on Shopify
+      const titanFulfillment = order.fulfillments && order.fulfillments.find(f => 
+        f.tracking_company === 'Titan X Logistics' || 
+        (f.tracking_number && (f.tracking_number.startsWith('TX-') || f.tracking_number.startsWith('TXK-')))
+      );
+
+      if (titanFulfillment) {
+        const trackingId = titanFulfillment.tracking_number;
+        
+        // Check if this tracking exists locally
+        const localTracking = await Tracking.findOne({ trackingId });
+        if (!localTracking) {
+          console.log(`  -> Detected fulfilled order with missing local tracking record in DB. Restoring tracking ID: ${trackingId}...`);
+          
+          if (isDryRun) {
+            console.log(`  [DRY RUN] Would restore tracking record for trackingId=${trackingId} to MongoDB`);
+            processedCount++;
+            continue;
+          }
+
+          // Generate tracking events
+          const startDate = formatNextDayInTimezone(orderCreatedDate);
+          const events = generateTrackingTimeline(startDate, country, city);
+
+          // Save tracking document to MongoDB
+          await Tracking.findOneAndUpdate(
+            { trackingId },
+            {
+              trackingId,
+              startDate,
+              destinationCountry: country,
+              destinationCity: city,
+              status: 'active',
+              events,
+              syncedToShopify: true,
+              shopifyFulfillment: titanFulfillment
+            },
+            { upsert: true, new: true }
+          );
+
+          // Mark local order as processed
+          await Order.findOneAndUpdate(
+            { shopifyOrderId: orderId },
+            {
+              shopifyOrderId: orderId,
+              customerEmail: email,
+              shippingCountry: country,
+              shippingCity: city,
+              orderCreatedDate: orderCreatedDate,
+              processed: true,
+              processAfter: processAfter,
+              processedAt: new Date(),
+              updatedAt: new Date()
+            },
+            { upsert: true }
+          );
+
+          console.log(`  -> Successfully restored tracking record to MongoDB.`);
+          processedCount++;
+          continue;
+        }
+      }
+
+      console.log(`  -> Order is already fulfilled on Shopify and exists locally. Skipping.`);
       skippedCount++;
       continue;
     }
@@ -244,13 +314,6 @@ async function run() {
       skippedCount++;
       continue;
     }
-
-    const email = order.email || order.contact_email || '';
-    const billingAddress = order.billing_address || order.shipping_address || {};
-    const country = billingAddress.country || 'United States';
-    const city = billingAddress.city || 'Default City';
-    const orderCreatedDate = new Date(order.created_at);
-    const processAfter = getNextDay10AM(orderCreatedDate);
 
     console.log(`  Customer: ${email}`);
     console.log(`  Destination: ${city}, ${country}`);
