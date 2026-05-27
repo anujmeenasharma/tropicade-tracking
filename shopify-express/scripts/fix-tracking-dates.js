@@ -27,7 +27,7 @@ if (typeof fetch !== 'undefined') {
   }
 }
 
-function formatNextDayInTimezone(date, timeZone = process.env.TIMEZONE || 'Asia/Kolkata') {
+function formatNextDayInTimezone(date, timeZone = process.env.TIMEZONE || 'Europe/Berlin') {
   const d = date ? new Date(date) : new Date();
   const nextDay = new Date(d.getTime() + 24 * 60 * 60 * 1000);
   const formatter = new Intl.DateTimeFormat('en-US', {

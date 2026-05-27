@@ -6,10 +6,10 @@ const verifyShopifyWebhook = require('../middleware/verifyShopifyWebhook');
 /**
  * Calculates the next day 10:00 AM in the specified timezone
  * @param {Date} baseDate The starting date (e.g. orderCreatedDate)
- * @param {string} [timeZone] The timezone to use (defaults to process.env.TIMEZONE or 'Asia/Kolkata')
+ * @param {string} [timeZone] The timezone to use (defaults to process.env.TIMEZONE or 'Europe/Berlin')
  * @returns {Date} The UTC Date object representing 10:00 AM of the next calendar day in that timezone.
  */
-function getNextDay10AM(baseDate, timeZone = process.env.TIMEZONE || 'Asia/Kolkata') {
+function getNextDay10AM(baseDate, timeZone = process.env.TIMEZONE || 'Europe/Berlin') {
   const date = baseDate ? new Date(baseDate) : new Date();
   const tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
   
