@@ -147,13 +147,12 @@ async function run() {
 
   const now = new Date();
   const todayStr = getLocalDateString(now);
-  const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-  const yesterdayStr = getLocalDateString(yesterday);
+  const fortyEightHoursAgo = new Date(now.getTime() - 48 * 60 * 60 * 1000);
 
   console.log(`Current Server Time (UTC): ${now.toISOString()}`);
   console.log(`Timezone: ${timeZone}`);
   console.log(`Today's local date: ${todayStr}`);
-  console.log(`Yesterday's local date: ${yesterdayStr}`);
+  console.log(`Fetching orders from the past 48 hours (since ${fortyEightHoursAgo.toISOString()})`);
 
   // Connect to DB
   console.log('Connecting to database...');
@@ -187,15 +186,15 @@ async function run() {
   const allOrders = data.orders || [];
   console.log(`Fetched ${allOrders.length} recent orders from Shopify.`);
 
-  // Filter for orders created yesterday in local time
-  const yesterdayOrders = allOrders.filter(order => {
-    const orderDateStr = getLocalDateString(new Date(order.created_at));
-    return orderDateStr === yesterdayStr;
+  // Filter for orders created in the past 48 hours
+  const targetOrders = allOrders.filter(order => {
+    const orderDate = new Date(order.created_at);
+    return orderDate >= fortyEightHoursAgo && orderDate <= now;
   });
 
-  console.log(`Found ${yesterdayOrders.length} orders created on yesterday (${yesterdayStr}).`);
+  console.log(`Found ${targetOrders.length} orders created in the past 48 hours.`);
 
-  if (yesterdayOrders.length === 0) {
+  if (targetOrders.length === 0) {
     console.log('No orders to process.');
     await mongoose.disconnect();
     return;
@@ -205,7 +204,7 @@ async function run() {
   let skippedCount = 0;
   let errorCount = 0;
 
-  for (const order of yesterdayOrders) {
+  for (const order of targetOrders) {
     const orderId = order.id.toString();
     const orderName = order.name || `#${orderId}`;
     console.log(`\n--------------------------------------------------------`);
@@ -422,7 +421,7 @@ async function run() {
 
   console.log(`\n========================================================`);
   console.log(`[Processor] Processing Completed.`);
-  console.log(`  Total Yesterday Orders Found: ${yesterdayOrders.length}`);
+  console.log(`  Total Orders Found (Past 48h): ${targetOrders.length}`);
   console.log(`  Successfully Processed/Fulfilling: ${processedCount}`);
   console.log(`  Skipped (Already Processed/Fulfilled): ${skippedCount}`);
   console.log(`  Errors Encountered: ${errorCount}`);
